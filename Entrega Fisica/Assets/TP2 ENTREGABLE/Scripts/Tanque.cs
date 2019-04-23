@@ -6,6 +6,7 @@ public class Tanque : MonoBehaviour
 {
     enum Player { PLAYER_1, PLAYER_2 };
     [SerializeField] GameObject _canon;
+    [SerializeField] Transform _canonTarget;
     [SerializeField] Player _player;
 	[SerializeField] GameObject _bomb;
     [SerializeField] float _xVel;
@@ -16,7 +17,9 @@ public class Tanque : MonoBehaviour
 
     void Update() {
         Movement();
-		Shoot ();
+        if (Input.GetButtonDown("Space")){
+            Shoot();
+        }
     }
 
     void Movement() {
@@ -62,12 +65,12 @@ public class Tanque : MonoBehaviour
 	void Shoot(){
 		switch (_player) {
 		case Player.PLAYER_1:
-			if (Input.GetButton("Space")){
-				_cannonBall = Instantiate (_bomb);
-				_cannonBall.transform.position = _canon.transform.position;
-				_cannonBall.GetComponent<Bala> ().SetAngle (_canon.transform.rotation.z);
-			}
+			_cannonBall = Instantiate (_bomb);
+			_cannonBall.transform.position = _canonTarget.position;
+			_cannonBall.GetComponent<Bala> ().SetAngle (_canon.transform.eulerAngles.z);
+               
 			break;
 		}
-	}
+        Debug.Log(_canon.transform.eulerAngles.z);
+    }
 }

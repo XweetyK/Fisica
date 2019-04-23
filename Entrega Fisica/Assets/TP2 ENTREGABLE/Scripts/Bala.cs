@@ -10,7 +10,7 @@ public class Bala : MonoBehaviour
     float _gravedad = 9.8f;
     float _posYi;
     float _posXi;
-    float _alfa;
+    float _alfa=90;
     float _timer;
     float _vel;
 	float _sinA;
