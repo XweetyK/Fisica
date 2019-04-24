@@ -9,16 +9,19 @@ public class Tanque : MonoBehaviour
     [SerializeField] Transform _canonTarget;
     [SerializeField] Player _player;
 	[SerializeField] GameObject _bomb;
-    [SerializeField] float _xVel;
     [SerializeField] float _angle;
+    float _xVel;
     float _vel;
     float _mru;
 	GameObject _cannonBall;
 
     void Update() {
         Movement();
-        if (Input.GetButtonDown("Space")){
-            Shoot();
+        if (Input.GetButtonDown("Space")) {
+            _vel = 0;
+        }
+        if (Input.GetButton("Space")){
+            _vel += Time.deltaTime;
         }
     }
 

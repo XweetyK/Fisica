@@ -65,6 +65,8 @@
     <Compile Include="Assets\TP1\Nave.cs" />
     <Compile Include="Assets\TP1\Spawn.cs" />
     <Compile Include="Assets\TP2 ENTREGABLE\Scripts\Bala.cs" />
+    <Compile Include="Assets\TP2 ENTREGABLE\Scripts\GameManager.cs" />
+    <Compile Include="Assets\TP2 ENTREGABLE\Scripts\HudManager.cs" />
     <Compile Include="Assets\TP2 ENTREGABLE\Scripts\Tanque.cs" />
     <None Include="Assets\Tank\read_me.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
