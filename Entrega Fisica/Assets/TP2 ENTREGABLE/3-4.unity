@@ -1618,6 +1618,7 @@ MonoBehaviour:
   _player: 0
   _bomb: {fileID: 1615033325114232, guid: d19d85e8db0fb8047bb2d15dc2097865, type: 3}
   _angle: 2
+  _xVel: 0
 --- !u!1 &2038493481
 GameObject:
   m_ObjectHideFlags: 0
@@ -1651,6 +1652,10 @@ MonoBehaviour:
   _cannonP2: {fileID: 912337143}
   _angleP1: {fileID: 1630688942}
   _angleP2: {fileID: 1329006504}
+  _tankP1: {fileID: 2064509454}
+  _tankP2: {fileID: 1875516317}
+  _velP1: {fileID: 1194319367}
+  _velP2: {fileID: 550855533}
 --- !u!4 &2038493483
 Transform:
   m_ObjectHideFlags: 0
@@ -1778,6 +1783,7 @@ MonoBehaviour:
   _player: 1
   _bomb: {fileID: 1615033325114232, guid: d19d85e8db0fb8047bb2d15dc2097865, type: 3}
   _angle: 2
+  _xVel: 0
 --- !u!4 &2064509455
 Transform:
   m_ObjectHideFlags: 0

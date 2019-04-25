@@ -10,18 +10,21 @@ public class Tanque : MonoBehaviour
     [SerializeField] Player _player;
 	[SerializeField] GameObject _bomb;
     [SerializeField] float _angle;
-    float _xVel;
+    [SerializeField] float _xVel;
     float _vel;
+    float _balaVel;
     float _mru;
 	GameObject _cannonBall;
 
     void Update() {
         Movement();
-        if (Input.GetButtonDown("Space")) {
-            _vel = 0;
-        }
         if (Input.GetButton("Space")){
-            _vel += Time.deltaTime;
+            _balaVel +=10* Time.deltaTime;  
+        }
+        if (Input.GetButtonUp("Space"))
+        {
+            Shoot();
+            _balaVel = 0;
         }
     }
 
@@ -69,11 +72,17 @@ public class Tanque : MonoBehaviour
 		switch (_player) {
 		case Player.PLAYER_1:
 			_cannonBall = Instantiate (_bomb);
-			_cannonBall.transform.position = _canonTarget.position;
-			_cannonBall.GetComponent<Bala> ().SetAngle (_canon.transform.eulerAngles.z);
-               
+            Bala _bala = _cannonBall.GetComponent<Bala>();
+            _cannonBall.transform.position = _canonTarget.position;
+			_bala.Angle =_canon.transform.eulerAngles.z;
+            _bala.Vel = _balaVel;
+            _bala.Fired = true;
+            
 			break;
 		}
         Debug.Log(_canon.transform.eulerAngles.z);
+    }
+    public float Vel {
+        get { return _balaVel; }
     }
 }
