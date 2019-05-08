@@ -12,19 +12,28 @@ public class Tanque : MonoBehaviour
     [SerializeField] float _angle;
     [SerializeField] float _xVel;
     float _vel;
-    float _balaVel;
+    float _balaVelP1;
+    float _balaVelP2;
     float _mru;
 	GameObject _cannonBall;
+	Bala _bala;
+
+    bool _turno= true;
 
     void Update() {
         Movement();
         if (Input.GetButton("Space")){
-            _balaVel +=10* Time.deltaTime;  
+            if (_turno)
+            {
+                _balaVelP1 += 10 * Time.deltaTime;
+            }
+            else { _balaVelP2 += 10 * Time.deltaTime; }
+             
         }
         if (Input.GetButtonUp("Space"))
         {
             Shoot();
-            _balaVel = 0;
+            _balaVelP1 = _balaVelP2 = 0;
         }
     }
 
@@ -33,34 +42,47 @@ public class Tanque : MonoBehaviour
         switch (_player)
         {
             case Player.PLAYER_1:
-                if (Input.GetButton("Right")){
-                    _vel = _xVel;
+                if (_turno == true)
+                {
+                    if (Input.GetButton("Right"))
+                    {
+                        _vel = _xVel;
+                    }
+                    if (Input.GetButton("Left"))
+                    {
+                        _vel = -_xVel;
+                    }
+                    if (Input.GetButton("Up"))
+                    {
+                        _canon.transform.Rotate(0, 0, -_angle);
+                    }
+                    if (Input.GetButton("Down"))
+                    {
+                        _canon.transform.Rotate(0, 0, _angle);
+                    }
                 }
-                if (Input.GetButton("Left")) {
-                    _vel = -_xVel;
-                }
-                if (Input.GetButton("Up")){
-                    _canon.transform.Rotate(0, 0, -_angle);
-                }
-                if (Input.GetButton("Down")) {
-                    _canon.transform.Rotate(0, 0, _angle);
-                }
-
                 break;
-            case Player.PLAYER_2:
-                if (Input.GetButton("Right2")){
-                    _vel = _xVel;
-                }
-                if (Input.GetButton("Left2")){
-                    _vel = -_xVel;
-                }
-                if (Input.GetButton("Up2")){
-                    _canon.transform.Rotate(0, 0, _angle);
-                }
-                if (Input.GetButton("Down2")){
-                    _canon.transform.Rotate(0, 0, -_angle);
-                }
 
+            case Player.PLAYER_2:
+                if (_turno == false)
+                {
+                    if (Input.GetButton("Right2"))
+                    {
+                        _vel = _xVel;
+                    }
+                    if (Input.GetButton("Left2"))
+                    {
+                        _vel = -_xVel;
+                    }
+                    if (Input.GetButton("Up2"))
+                    {
+                        _canon.transform.Rotate(0, 0, _angle);
+                    }
+                    if (Input.GetButton("Down2"))
+                    {
+                        _canon.transform.Rotate(0, 0, -_angle);
+                    }
+                }
                 break;
         }
 
@@ -70,19 +92,40 @@ public class Tanque : MonoBehaviour
 
 	void Shoot(){
 		switch (_player) {
-		case Player.PLAYER_1:
-			_cannonBall = Instantiate (_bomb);
-            Bala _bala = _cannonBall.GetComponent<Bala>();
-            _cannonBall.transform.position = _canonTarget.position;
-			_bala.Angle =_canon.transform.eulerAngles.z;
-            _bala.Vel = _balaVel;
-            _bala.Fired = true;
-            
+	    	case Player.PLAYER_1:
+                if (_turno==true)
+                {
+                    _cannonBall = Instantiate(_bomb);
+                    _bala = _cannonBall.GetComponent<Bala>();
+                    _cannonBall.transform.position = _canonTarget.position;
+                    _bala.Angle = _canon.transform.eulerAngles.z;
+                    _bala.Vel = _balaVelP1;
+                    _bala.Fired = true;
+                }      
+			break;
+
+		    case Player.PLAYER_2:
+                if (_turno==false)
+                {
+                    _cannonBall = Instantiate(_bomb);
+                    _bala = _cannonBall.GetComponent<Bala>();
+                    _cannonBall.transform.position = _canonTarget.position;
+                    _bala.Angle = _canon.transform.eulerAngles.z;
+                    _bala.Vel = _balaVelP2;
+                    _bala.Fired = true;
+                }
 			break;
 		}
         Debug.Log(_canon.transform.eulerAngles.z);
     }
-    public float Vel {
-        get { return _balaVel; }
+    public float Vel1 {
+        get { return _balaVelP1;}
+    }
+    public float Vel2 {
+        get { return _balaVelP2; }
+    }
+
+    public bool Turn {
+        set { _turno = value; }
     }
 }
