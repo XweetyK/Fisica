@@ -17,23 +17,45 @@ public class Tanque : MonoBehaviour
     float _mru;
 	GameObject _cannonBall;
 	Bala _bala;
+    CollisionManager _colManager;
+    CollisionBox _cBox;
+    Vida _vida;
+    GameManager _GM;
 
     bool _turno= true;
+    void Start() {
+        _colManager = FindObjectOfType<CollisionManager>();
+        _cBox = gameObject.GetComponent<CollisionBox>();
+        _colManager.AddEntity(0, _cBox);
+        _vida = gameObject.GetComponent<Vida>();
+        _GM = FindObjectOfType<GameManager>();
+    }
+
 
     void Update() {
-        Movement();
-        if (Input.GetButton("Space")){
-            if (_turno)
-            {
-                _balaVelP1 += 10 * Time.deltaTime;
-            }
-            else { _balaVelP2 += 10 * Time.deltaTime; }
-             
-        }
-        if (Input.GetButtonUp("Space"))
+        if (!_GM.GameOver)
         {
-            Shoot();
-            _balaVelP1 = _balaVelP2 = 0;
+            Movement();
+            if (Input.GetButton("Space"))
+            {
+                if (_turno)
+                {
+                    _balaVelP1 += 10 * Time.deltaTime;
+                }
+                else { _balaVelP2 += 10 * Time.deltaTime; }
+
+            }
+            if (Input.GetButtonUp("Space"))
+            {
+                Shoot();
+                _balaVelP1 = _balaVelP2 = 0;
+            }
+            if (_colManager.CheckCollisions(1, ref _cBox))
+            {
+                _vida.Life = -5;
+            }
+
+            _turno = _GM.SetTurn;
         }
     }
 
@@ -116,16 +138,11 @@ public class Tanque : MonoBehaviour
                 }
 			break;
 		}
-        Debug.Log(_canon.transform.eulerAngles.z);
     }
     public float Vel1 {
         get { return _balaVelP1;}
     }
     public float Vel2 {
         get { return _balaVelP2; }
-    }
-
-    public bool Turn {
-        set { _turno = value; }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 212657236895024520}
   - component: {fileID: 114989063972651992}
   - component: {fileID: 3018775406213634937}
+  - component: {fileID: 7242621290630306463}
   m_Layer: 0
   m_Name: Bala
   m_TagString: Untagged
@@ -93,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84da3edc157ad084eb4ae8ce89d94fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 10
 --- !u!96 &3018775406213634937
 TrailRenderer:
   serializedVersion: 2
@@ -198,3 +198,18 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &7242621290630306463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615033325114232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef6618648b973941aa4601bfb58c32a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _width: 1
+  _height: 1
+  _ratio: 2

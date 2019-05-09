@@ -6,7 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     bool _turn; //TRUE->PLAYER1     FALSE->PLAYER2
-    Tanque[] _tank;
+    [SerializeField] Tanque _p1;
+    [SerializeField] Tanque _p2;
+    Vida _vidaP1;
+    Vida _vidaP2;
+    bool _gameOver = false;
 
     void Awake(){
         if (instance == null){
@@ -19,7 +23,8 @@ public class GameManager : MonoBehaviour
 
     void Start() {
         _turn = true;
-        _tank = FindObjectsOfType<Tanque>();
+        _vidaP1=_p1.GetComponent<Vida>();
+        _vidaP2=_p2.GetComponent<Vida>();
     }
 
     void Update(){
@@ -27,13 +32,18 @@ public class GameManager : MonoBehaviour
         {
             _turn = !_turn;
         }
-        TurnUpdate();
-    }
-    void TurnUpdate() {
-        Debug.Log("turn change");
-        foreach (var tank in _tank)
+        Debug.Log(_turn);
+
+        if (_vidaP1.Life<=0 || _vidaP1.Life <= 0)
         {
-            tank.Turn = _turn;
+            _gameOver = true;
         }
+    }
+    public bool SetTurn {
+        get { return _turn; }
+        set { _turn = !value; Debug.Log("set"); }
+    }
+    public bool GameOver {
+        get { return _gameOver; }
     }
 }
