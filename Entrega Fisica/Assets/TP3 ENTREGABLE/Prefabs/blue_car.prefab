@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3384569544185099662}
   - component: {fileID: 2182289380831535996}
   - component: {fileID: 46428856765928734}
+  - component: {fileID: 2618373493053067338}
   m_Layer: 0
   m_Name: blue_car
   m_TagString: Untagged
@@ -93,3 +94,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _limitY: -7.5
+--- !u!114 &2618373493053067338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46428856765928735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ef6618648b973941aa4601bfb58c32a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _width: 0.5
+  _height: 1
+  _ratio: 0

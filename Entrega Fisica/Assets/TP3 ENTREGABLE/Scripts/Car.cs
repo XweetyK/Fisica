@@ -5,6 +5,14 @@ using UnityEngine;
 public class Car : MonoBehaviour
 {
     [SerializeField] float _limitY;
+    private CollisionBox _collisionBox;
+    private CollisionManager _colManager;
+
+    void Start(){
+        _collisionBox = gameObject.GetComponent<CollisionBox>();
+        _colManager = FindObjectOfType<CollisionManager>();
+        _colManager.AddEntity(1, _collisionBox);
+    }
 
     void Update()
     {
