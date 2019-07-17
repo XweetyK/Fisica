@@ -16,7 +16,7 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(-Vector3.up * Time.deltaTime*1.5f);
+        transform.Translate(-Vector3.up * Time.deltaTime*1f);
         if (transform.position.y<_limitY)
         {
             Destroy(gameObject);

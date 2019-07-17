@@ -136,7 +136,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257961355}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69bf63d784f1e3140bde83cec7dcd48a, type: 3}
   m_Name: 
@@ -149,7 +149,7 @@ MonoBehaviour:
   - {fileID: 479921472955221620, guid: 567e34d872b3c90468614ad032e0b5c4, type: 3}
   - {fileID: 5282101029270992081, guid: 50f31fa8280986444a17469878e0ad4f, type: 3}
   _initY: 7
-  _interval: 4
+  _interval: 5
 --- !u!4 &257961357
 Transform:
   m_ObjectHideFlags: 0
@@ -972,11 +972,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  maxSpeed: 2
+  maxSpeed: 5
   accel: 0
   maxAccel: 1.7
-  radius: 1
-  friction: 0.8
+  radius: 2
+  friction: 1
 --- !u!114 &1955238476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,11 +990,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  maxSpeed: 2
+  maxSpeed: 5
   accel: 0
   maxAccel: 1.7
-  radius: 1
-  friction: 0.8
+  radius: 2
+  friction: 1
 --- !u!114 &1955238477
 MonoBehaviour:
   m_ObjectHideFlags: 0
